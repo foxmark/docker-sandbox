@@ -1,0 +1,19 @@
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    ports:
+      - 5678:5678
+    environment:
+      - GENERIC_TIMEZONE="Europe/London"
+      - TZ="Europe/London"
+    volumes:
+      - n8n_data_volume:/home/node/.n8n
+
+volumes:
+  n8n_data_volume:
+    name: n8n_data_volume
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: ./data
